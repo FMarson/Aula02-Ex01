@@ -16,5 +16,90 @@ curar: Este método deve receber a quantidade de pontos de vida a serem recupera
 recuperarMana: Este método deve receber a quantidade de pontos de mana a serem recuperados como parâmetro e aumentar os pontos de mana do mago em acordo com esse valor. A quantidade de pontos de mana não pode ultrapassar um valor máximo (defina um valor máximo para pontos de mana).
  * */
 public class Mago {
+    private String nome;
+    private String tipoDeMagia;
+    private int pontosDeMana;
+    private int pontosDeVida;
     
+    public Mago(String nome, String tipoDeMagia){
+        this.setNome(nome);
+        this.setTipoDeMagia(tipoDeMagia);
+        this.setPontosDeVida(100);
+        this.setPontosDeMana(100);
+    }
+
+    public void setPontosDeMana(int mana){
+        this.pontosDeMana = mana;
+    }
+
+    public int getPontosDeMana(){
+        return pontosDeMana;
+    }
+
+    public void setPontosDeVida(int vida){
+        this.pontosDeVida = vida;
+    }
+
+    public int getPontosDeVida(){
+        return pontosDeVida;
+    }
+
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+
+    public String getNome(){
+        return this.nome;
+    }
+
+    public void setTipoDeMagia(String magia){
+        tipoDeMagia = magia;
+    }
+
+    public String getTipoDeMagia(){
+        return this.tipoDeMagia;
+    }
+
+    public boolean estaVivo(){
+        if(this.getPontosDeVida() > 0) 
+            return true;
+        else
+            return false;
+    }
+
+    public void imprimirVivoMorto(){
+        if(this.estaVivo())
+            System.out.println(nome + " está vivo!");
+        else
+            System.out.println(nome + " está morto!");
+    }
+    public void lancarMagia(){
+        if(this.estaVivo()){
+            if(this.getPontosDeMana() >= 25){
+                this.pontosDeMana-=25;
+                System.out.println("Magia simples de " + this.getTipoDeMagia() + " foi lançada!");
+            }
+            else{
+                System.out.println("Não tenho mana para lançar a magia!");
+            }
+        }
+        else{
+            System.out.println(nome + " está morto e não pode lançar magias!");
+        }
+    }
+
+    public void lancarMagiaEspecial(){
+        if(this.estaVivo()){
+            if(this.getPontosDeMana() >= 50){
+                this.pontosDeMana-=50;
+                System.out.println("Magia especial de " + this.getTipoDeMagia() + " foi lançada!");
+            }
+            else{
+                System.out.println("Não tenho mana para lançar a magia especial!");
+            }
+        }
+        else{
+            System.out.println(nome + " está morto e não pode lançar magias!");
+        }
+    }
 }
